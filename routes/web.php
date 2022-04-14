@@ -15,3 +15,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [ApiController::class, 'welcome']);
+Route::get('/{id}', [ApiController::class, 'movie'])->where('id', '[0-9]+');
