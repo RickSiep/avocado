@@ -18,7 +18,12 @@
             <td>{{$item['properties']['title']}}</td>
             <td>{{$item['description']}}</td>
             <td>{{$item['properties']['release_date']}}</td>
-            <td><button class="btn btn-danger">Favorite</button></td>
+            <td>
+                <form action="{{route('favorite', $item['uid'])}}" method="POST">
+                    @csrf
+                    <button class="btn btn-danger">Favorite</button>
+                </form>
+            </td>
         </tr>
     @endforeach
     </tbody>

@@ -15,4 +15,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [ApiController::class, 'welcome']);
+
+// Get a specific movie
 Route::get('/{id}', [ApiController::class, 'movie'])->where('id', '[0-9]+');
+
+// Favorite a movie
+Route::post('/{id}', [ApiController::class, 'favorite'])->where('id', '[0-9]+')
+    ->name('favorite');
+
+// Delete a favorite
+//Route::delete('/{id}', [ApiController::class])

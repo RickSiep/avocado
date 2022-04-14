@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Favorite;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Illuminate\View\View;
@@ -28,5 +29,17 @@ class ApiController extends Controller
         Cache::put("movie/$id", $collection, now()->addMinutes(20));
 
         return view('movie', ['movie' => $collection['result']]);
+    }
+
+    public function favorite($id, Favorite $favorite) {
+        // Fill in the database and save
+        $favorite->fill([
+            'movie_id' => $id,
+            'favorite' => 1
+        ]);
+
+        $favorite->save();
+
+        return back();
     }
 }
