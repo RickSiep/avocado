@@ -15,14 +15,25 @@
     @foreach($collection as $item)
         <tr>
             <td>{{$item['uid']}}</td>
-            <td>{{$item['properties']['title']}}</td>
+            <td>
+                <a href="{{route('movie', $item['uid'])}}">{{$item['properties']['title']}}</a>
+            </td>
             <td>{{$item['description']}}</td>
             <td>{{$item['properties']['release_date']}}</td>
             <td>
+{{--                {{dd($favorite->where('movie_id', $item['uid']))}}--}}
+                @if($favorite->where('movie_id', $item['uid'])->count() == 0)
                 <form action="{{route('favorite', $item['uid'])}}" method="POST">
                     @csrf
-                    <button class="btn btn-danger">Favorite</button>
+                    <button class="btn btn-success">Favorite</button>
                 </form>
+                @else
+                    <form action="{{route('delete', $item['uid'])}}" method="POST">
+                        @method('delete')
+                        @csrf
+                        <button class="btn btn-danger">Delete</button>
+                    </form>
+                @endif
             </td>
         </tr>
     @endforeach

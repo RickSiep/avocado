@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('favorites', function (Blueprint $table) {
             $table->id();
             $table->integer("movie_id");
-            $table->tinyInteger("favorite");
             $table->timestamps();
         });
     }
