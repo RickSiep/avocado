@@ -21,7 +21,21 @@
     </style>
 </head>
 <body class="antialiased bg-gray-100">
-    <div class="container ml-2">
+<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+    <div class="container">
+        <a class="navbar-brand" href="{{ url('/') }}">
+            {{ config('app.name', 'Laravel') }}
+        </a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="{{request()->is('/') ? 'active' : ''}} nav-link" href="{{ url('/') }}">Home</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+    <div class="container my-2">
         @yield('content')
     </div>
 </body>

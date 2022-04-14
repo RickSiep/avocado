@@ -1,5 +1,5 @@
 @extends('layout.master')
 
 @section('content')
-    <h2>yoo</h2>
+    <h2>{{$movie['description']}}</h2>
 @endsection

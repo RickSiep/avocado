@@ -19,7 +19,14 @@ class ApiController extends Controller
     }
 
     public function movie($id) {
-        $collection = Http::get("https://www.swapi.tech/api/films/$id")->collect();
-        dd($collection);
+        // Same cache trick to make this app faster and not keep making requests
+        $collection = Cache::get("movie/$id");
+        if (is_null($collection)) $collection = Http::get("https://www.swapi.tech/api/films/$id")->collect();
+
+        // Throw a 404 if the movie doesn't find anything
+        if ($collection->count() <= 1) abort(404);
+        Cache::put("movie/$id", $collection, now()->addMinutes(20));
+
+        return view('movie', ['movie' => $collection['result']]);
     }
 }
