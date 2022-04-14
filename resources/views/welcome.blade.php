@@ -21,7 +21,6 @@
             <td>{{$item['description']}}</td>
             <td>{{$item['properties']['release_date']}}</td>
             <td>
-{{--                {{dd($favorite->where('movie_id', $item['uid']))}}--}}
                 @if($favorite->where('movie_id', $item['uid'])->count() == 0)
                 <form action="{{route('favorite', $item['uid'])}}" method="POST">
                     @csrf
@@ -31,7 +30,7 @@
                     <form action="{{route('delete', $item['uid'])}}" method="POST">
                         @method('delete')
                         @csrf
-                        <button class="btn btn-danger">Delete</button>
+                        <button class="btn btn-danger">Unfavorite</button>
                     </form>
                 @endif
             </td>
