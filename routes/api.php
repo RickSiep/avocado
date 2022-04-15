@@ -22,7 +22,3 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('movies', function () {
    return Http::get('https://www.swapi.tech/api/films')->collect();
 });
-
-Route::get('movies/{id}', function () {
-    return Http::get('https://www.swapi.tech/api/films')->collect();
-})->name("movie");
